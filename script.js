@@ -1,17 +1,33 @@
 const progressContainer = document.getElementById('progress-container');
 const progress = document.getElementById('progress');
+const dynamicCircle = document.getElementById('dynamic-circle');
 const currentTimeEl = document.getElementById('current-time');
 const durationEl = document.getElementById('duration');
 const image = document.querySelector('img');
 const title = document.getElementById('title');
 const artist = document.getElementById('artist');
 const music = document.querySelector('audio');
+const shuffleBtn = document.getElementById('shuffle');
 const prevBtn = document.getElementById('prev');
 const playBtn = document.getElementById('play');
 const nextBtn = document.getElementById('next');
+const stop = document.getElementById('stop');
 
 // Check if Playing
 let isPlaying = false;
+
+// Pause Songs
+const stopSong = () => {
+  music.pause();
+};
+
+// Random Songs
+const randomSongs = () => {
+  isPlaying = true;
+  loadSong(songs[Math.floor(Math.random() * songs.length)]);
+  playBtn.classList.replace('fa-play', 'fa-pause');
+  music.play();
+};
 
 // Play
 const playSong = () => {
@@ -73,6 +89,8 @@ const updateProgressbar = (e) => {
     // Update progress bar width
     const progressPercent = (currentTime / duration) * 100;
     progress.style.width = `${progressPercent}%`;
+    // Update dynamic-circle
+    dynamicCircle.style.marginLeft = `${progressPercent}%`;
     // Calculate display for duration
     const durationMinutes = Math.floor(duration / 60);
     let durationSeconds = Math.floor(duration % 60);
@@ -102,8 +120,10 @@ function setProgressBar(e) {
 }
 
 //Event Listener
+shuffleBtn.addEventListener('click', randomSongs);
 prevBtn.addEventListener('click', prevSong);
 nextBtn.addEventListener('click', nextSong);
+stop.addEventListener('click', stopSong);
 music.addEventListener('ended', nextSong);
 music.addEventListener('timeupdate', updateProgressbar);
 progressContainer.addEventListener('click', setProgressBar);
