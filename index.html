@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music Player</title>
+    <link rel="icon" type="image/png" href="img/favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/83fdd2ab4b.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="player-container">
+      <!-- Song -->
+      <div class="img-container">
+        <img src="img/2Pac-1.jpg" alt="Album Art" />
+      </div>
+      <h2 id="title">Road To Glory</h2>
+      <h3 id="artist">2Pac</h3>
+      <audio src="music/2Pac-1.mp3"></audio>
+      <!-- Progress -->
+      <div class="progress-container" id="progress-container">
+        <div class="progress" id="progress"></div>
+        <div class="duration-wrapper">
+          <span id="current-time">0:00</span>
+          <span id="duration">3:07</span>
+        </div>
+      </div>
+      <!-- Controls -->
+      <div class="player-controls">
+        <i class="fa-solid fa-backward" id="prev" title="Previous"></i>
+        <i class="fa-solid fa-play main-button" id="play" title="Play"></i>
+        <i class="fa-solid fa-forward" id="next" title="Next"></i>
+      </div>
+    </div>
+    <!-- Script -->
+    <script src="songs.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
