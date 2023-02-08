@@ -1,18 +1,3 @@
-const progressContainer = document.getElementById('progress-container');
-const progress = document.getElementById('progress');
-const dynamicCircle = document.getElementById('dynamic-circle');
-const currentTimeEl = document.getElementById('current-time');
-const durationEl = document.getElementById('duration');
-const image = document.querySelector('img');
-const title = document.getElementById('title');
-const artist = document.getElementById('artist');
-const music = document.querySelector('audio');
-const shuffleBtn = document.getElementById('shuffle');
-const prevBtn = document.getElementById('prev');
-const playBtn = document.getElementById('play');
-const nextBtn = document.getElementById('next');
-const stop = document.getElementById('stop');
-
 // Check if Playing
 let isPlaying = false;
 
@@ -119,6 +104,42 @@ function setProgressBar(e) {
   music.currentTime = (clickX / width) * duration;
 }
 
+// Volume Controls --------------------------- //
+let lastVolume = 1;
+// Volume Bar
+const changeVolume = (e) => {
+  let volume = e.offsetX / volumeRange.offsetWidth;
+  // Rounding volume up or down
+  if (volume < 0.1) {
+    volume = 0;
+  }
+  if (volume > 0.9) {
+    volume = 1;
+  }
+  volumeBar.style.width = `${volume * 100}%`;
+  circleVolume.style.marginLeft = `${volume * 100}%`;
+  volumeValue.textContent = `${Math.floor(volume * 100)}`;
+  music.volume = volume;
+  // Change icon volume depending on volume
+  volumeIcon.className = '';
+  if (volume > 0.7) {
+    volumeIcon.classList.add('fa-solid', 'fa-volume-up');
+  } else if (volume < 0.7 && volume > 0) {
+    volumeIcon.classList.add('fa-solid', 'fa-volume-down');
+  } else if (volume === 0) {
+    volumeIcon.classList.add('fa-solid', 'fa-volume-off');
+  }
+  lastVolume = volume;
+};
+
+// Show/ Hide Volume icon
+let showVolumeIcon = false;
+
+const toggleVolume = () => {
+  !showVolumeIcon ? (volumeContainer.hidden = false) : (volumeContainer.hidden = true);
+  showVolumeIcon = !showVolumeIcon;
+};
+
 //Event Listener
 shuffleBtn.addEventListener('click', randomSongs);
 prevBtn.addEventListener('click', prevSong);
@@ -127,3 +148,5 @@ stop.addEventListener('click', stopSong);
 music.addEventListener('ended', nextSong);
 music.addEventListener('timeupdate', updateProgressbar);
 progressContainer.addEventListener('click', setProgressBar);
+volumeRange.addEventListener('click', changeVolume);
+volumeIcon.addEventListener('click', toggleVolume);
