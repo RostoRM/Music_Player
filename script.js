@@ -1,3 +1,29 @@
+import { cashingDOM } from './variables.js';
+import { songs } from './songs.js';
+
+const {
+  progressContainer,
+  progress,
+  dynamicCircle,
+  currentTimeEl,
+  durationEl,
+  image,
+  title,
+  artist,
+  music,
+  shuffleBtn,
+  prevBtn,
+  playBtn,
+  nextBtn,
+  stop,
+  volumeIcon,
+  volumeRange,
+  volumeBar,
+  circleVolume,
+  volumeValue,
+  volumeContainer,
+} = cashingDOM;
+
 // Check if Playing
 let isPlaying = false;
 

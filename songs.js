@@ -51,3 +51,5 @@ const songs = [
     artist: 'The Game (feat. 50 Cent)',
   },
 ];
+
+export { songs };

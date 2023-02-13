@@ -1,21 +1,30 @@
 //Cashing DOM
-const progressContainer = document.getElementById('progress-container');
-const progress = document.getElementById('progress');
-const dynamicCircle = document.getElementById('dynamic-circle');
-const currentTimeEl = document.getElementById('current-time');
-const durationEl = document.getElementById('duration');
-const image = document.querySelector('img');
-const title = document.getElementById('title');
-const artist = document.getElementById('artist');
-const music = document.querySelector('audio');
-const shuffleBtn = document.getElementById('shuffle');
-const prevBtn = document.getElementById('prev');
-const playBtn = document.getElementById('play');
-const nextBtn = document.getElementById('next');
-const stop = document.getElementById('stop');
-const volumeIcon = document.getElementById('volume-icon');
-const volumeRange = document.querySelector('.volume-range');
-const volumeBar = document.querySelector('.volume-bar');
-const circleVolume = document.getElementById('dynamic-circle-volume');
-const volumeValue = document.getElementById('volume-value');
-const volumeContainer = document.querySelector('.volume-container');
+
+const getElement = (value) => {
+  return document.querySelector(value);
+};
+
+const cashingDOM = {
+  progressContainer: getElement('#progress-container'),
+  progress: getElement('#progress'),
+  dynamicCircle: getElement('#dynamic-circle'),
+  currentTimeEl: getElement('#current-time'),
+  durationEl: getElement('#duration'),
+  image: getElement('img'),
+  title: getElement('#title'),
+  artist: getElement('#artist'),
+  music: getElement('audio'),
+  shuffleBtn: getElement('#shuffle'),
+  prevBtn: getElement('#prev'),
+  playBtn: getElement('#play'),
+  nextBtn: getElement('#next'),
+  stop: getElement('#stop'),
+  volumeIcon: getElement('#volume-icon'),
+  volumeRange: getElement('.volume-range'),
+  volumeBar: getElement('.volume-bar'),
+  circleVolume: getElement('#dynamic-circle-volume'),
+  volumeValue: getElement('#volume-value'),
+  volumeContainer: getElement('.volume-container'),
+};
+
+export { cashingDOM };
