@@ -1,5 +1,5 @@
-import { cashingDOM } from './variables.js';
-import { songs } from './songs.js';
+import { cashingDOM } from "./variables.js";
+import { songs } from "./songs.js";
 
 const {
   progressContainer,
@@ -36,28 +36,28 @@ const stopSong = () => {
 const randomSongs = () => {
   isPlaying = true;
   loadSong(songs[Math.floor(Math.random() * songs.length)]);
-  playBtn.classList.replace('fa-play', 'fa-pause');
+  playBtn.classList.replace("fa-play", "fa-pause");
   music.play();
 };
 
 // Play
 const playSong = () => {
   isPlaying = true;
-  playBtn.classList.replace('fa-play', 'fa-pause');
-  playBtn.setAttribute('title', 'Pause');
+  playBtn.classList.replace("fa-play", "fa-pause");
+  playBtn.setAttribute("title", "Pause");
   music.play();
 };
 
 // Pause
 const pauseSong = () => {
   isPlaying = false;
-  playBtn.classList.replace('fa-pause', 'fa-play');
-  playBtn.setAttribute('title', 'Play');
+  playBtn.classList.replace("fa-pause", "fa-play");
+  playBtn.setAttribute("title", "Play");
   music.pause();
 };
 
 // Play or pause Event Listener
-playBtn.addEventListener('click', () => (isPlaying ? pauseSong() : playSong()));
+playBtn.addEventListener("click", () => (isPlaying ? pauseSong() : playSong()));
 
 // Update DOM
 const loadSong = (song) => {
@@ -147,13 +147,13 @@ const changeVolume = (e) => {
   volumeValue.textContent = `${Math.floor(volume * 100)}`;
   music.volume = volume;
   // Change icon volume depending on volume
-  volumeIcon.className = '';
+  volumeIcon.className = "";
   if (volume > 0.7) {
-    volumeIcon.classList.add('fa-solid', 'fa-volume-up');
+    volumeIcon.classList.add("fa-solid", "fa-volume-up");
   } else if (volume < 0.7 && volume > 0) {
-    volumeIcon.classList.add('fa-solid', 'fa-volume-down');
+    volumeIcon.classList.add("fa-solid", "fa-volume-down");
   } else if (volume === 0) {
-    volumeIcon.classList.add('fa-solid', 'fa-volume-off');
+    volumeIcon.classList.add("fa-solid", "fa-volume-off");
   }
   lastVolume = volume;
 };
@@ -162,17 +162,19 @@ const changeVolume = (e) => {
 let showVolumeIcon = false;
 
 const toggleVolume = () => {
-  !showVolumeIcon ? (volumeContainer.hidden = false) : (volumeContainer.hidden = true);
+  !showVolumeIcon
+    ? (volumeContainer.hidden = false)
+    : (volumeContainer.hidden = true);
   showVolumeIcon = !showVolumeIcon;
 };
 
 //Event Listener
-shuffleBtn.addEventListener('click', randomSongs);
-prevBtn.addEventListener('click', prevSong);
-nextBtn.addEventListener('click', nextSong);
-stop.addEventListener('click', stopSong);
-music.addEventListener('ended', nextSong);
-music.addEventListener('timeupdate', updateProgressbar);
-progressContainer.addEventListener('click', setProgressBar);
-volumeRange.addEventListener('click', changeVolume);
-volumeIcon.addEventListener('click', toggleVolume);
+shuffleBtn.addEventListener("click", randomSongs);
+prevBtn.addEventListener("click", prevSong);
+nextBtn.addEventListener("click", nextSong);
+stop.addEventListener("click", stopSong);
+music.addEventListener("ended", nextSong);
+music.addEventListener("timeupdate", updateProgressbar);
+progressContainer.addEventListener("click", setProgressBar);
+volumeRange.addEventListener("click", changeVolume);
+volumeIcon.addEventListener("click", toggleVolume);
